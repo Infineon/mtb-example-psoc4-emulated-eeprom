@@ -8,7 +8,7 @@
 *
 *
 *******************************************************************************
-* Copyright 2021, Cypress Semiconductor Corporation (an Infineon company) or
+* Copyright 2021-2023, Cypress Semiconductor Corporation (an Infineon company) or
 * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
 *
 * This software, including source code, documentation and related
@@ -179,6 +179,10 @@ int main(void)
      */
     if(ASCII_P != em_eeprom_read_array[0])
     {
+        /* Erase Emulated EEPROM */
+        em_eeprom_status = Cy_Em_EEPROM_Erase(&em_eeprom_context);
+        handle_error(em_eeprom_status, "Emulated EEPROM erase failed \r\n");
+        
         /* Write initial data to Emulated EEPROM. */
         em_eeprom_status = Cy_Em_EEPROM_Write(LOGICAL_EM_EEPROM_START,
                                                  em_eeprom_write_array,
@@ -225,7 +229,7 @@ int main(void)
     for(count = 0; count < LOGICAL_EM_EEPROM_SIZE; count++)
     {
         em_eeprom_char = em_eeprom_read_array[count];
-        uart_print(&em_eeprom_char);
+        Cy_SCB_Write(CYBSP_UART_HW, em_eeprom_char);
     }
     uart_print("\r\n");
 

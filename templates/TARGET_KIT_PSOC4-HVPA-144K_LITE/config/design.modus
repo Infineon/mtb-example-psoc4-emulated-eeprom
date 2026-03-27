@@ -46,6 +46,7 @@
                         <Alias value="CYBSP_VTEMP_RET"/>
                     </Aliases>
                 </Block>
+                <Block location="peri[0].div_16[0]"/>
                 <Personality template="m0s8dap" version="1.0">
                     <Block location="cpuss[0].dap[0]" locked="true"/>
                     <Parameters>
@@ -158,20 +159,6 @@
                     </Parameters>
                 </Personality>
                 <Personality template="m0s8peripheralclock" version="1.0">
-                    <Block location="peri[0].div_16[0]" locked="true">
-                        <Aliases>
-                            <Alias value="CYBSP_MSC_CLK_DIV"/>
-                        </Aliases>
-                    </Block>
-                    <Parameters>
-                        <Param id="calc" value="man"/>
-                        <Param id="desFreq" value="10000000.000000"/>
-                        <Param id="fracDivider" value="13"/>
-                        <Param id="intDivider" value="1"/>
-                        <Param id="startOnReset" value="true"/>
-                    </Parameters>
-                </Personality>
-                <Personality template="m0s8peripheralclock" version="1.0">
                     <Block location="peri[0].div_16[1]" locked="true">
                         <Aliases>
                             <Alias value="CYBSP_UART_CLK"/>
@@ -247,20 +234,11 @@
                         <Param id="sourceClock" value="IMO"/>
                     </Parameters>
                 </Personality>
-                <Personality template="m0s8ilo" version="2.0">
-                    <Block location="srss[0].clock[0].ilo[0]" locked="true"/>
-                </Personality>
                 <Personality template="m0s8imo" version="1.0">
                     <Block location="srss[0].clock[0].imo[0]" locked="true"/>
                     <Parameters>
                         <Param id="frequency" value="48000000"/>
                         <Param id="trim" value="2"/>
-                    </Parameters>
-                </Personality>
-                <Personality template="m0s8pumpclk" version="2.0">
-                    <Block location="srss[0].clock[0].pumpclk[0]" locked="true"/>
-                    <Parameters>
-                        <Param id="sourceClock" value="IMO"/>
                     </Parameters>
                 </Personality>
                 <Personality template="m0s8sysclk" version="1.0">
